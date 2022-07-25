@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export default function Home({data}) {
 console.log(data.alive);
   return (
@@ -13,12 +15,25 @@ console.log(data.alive);
 }
 
 export async function getStaticProps() {
-	const response = await fetch('https://doar-computador-api.herokuapp.com/')
-	const data = await response.json();
-
-	return {
-		props: {data},
-		
+	try {	
+		const result = await axios.get('https://doar-computador-api.herokuapp.com/')
+		const data = result.data;
+		return {
+			props:{
+				data: data,
+			}
+		}
+	}catch(error){
+		console.error(error);
 	}
 }
+
+// export async function getStaticProps() {
+// 	const response = await fetch('https://doar-computador-api.herokuapp.com/')
+// 	const data = await response.json();
+
+// 	return {
+// 		props: {data},
+// 	}
+// }
   
