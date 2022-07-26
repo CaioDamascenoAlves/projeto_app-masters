@@ -8,7 +8,7 @@ console.log(data.alive);
 				Doação de computadores usados
 			</h1>
 			<p>
-				{data.alive === true ? '{alive:true}' : '{alive:false}'}
+				{data.alive === true ? 'API: Online' : 'API: Offline'}
 	  		</p>
 		</div>
   )
