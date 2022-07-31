@@ -1,4 +1,4 @@
-export default function Titulo(props){
+export default function Tittle(props){
 	return(
 		<div className="flex flex-col justify-center">
 			<h1 className=" px-5 py-3 py-text-2xl">

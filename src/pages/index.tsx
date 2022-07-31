@@ -1,23 +1,57 @@
 import axios from "axios";
-import Botao from "../components/Botao";
+import Button from "../components/Button";
 import Layout from "../components/Layout";
-import FormSessaoUm from "../components/FormSessaoUm";
+import FormSessionOne from "../components/FormSessionOne";
+import Donator from "../core/Donator";
+import { useState } from "react";
+import FormSessionTwo from "../components/FormSessionTwo";
 
 export default function Home({data}) {
 console.log(data.alive);
+	const donators =  [
+		new Donator(
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		''
+		)
+	]
+
+	const [visivel, setVisivel] = useState<'formSessionOne'| 'formSessionTwo'>('formSessionOne')
   return (
 		<div className ={`
 			flex justify-center items-center h-screen
 			text-white
 		`}>
-			<Layout titulo="Doação de computadores" >
-				<div className="flex justify-end ">
-				<Botao className="mb-4">Novo Doador</Botao>
-				</div>
+			<Layout tittle="Doação de computadores" >
+				{visivel === 'formSessionOne' ?(
+				<>
+				<FormSessionOne 
+					donator= {donators[0]} 
+					next={() => setVisivel('formSessionTwo')}
+				/>
 				<p>
 					{data.alive === true ? 'API: Online' : 'API: Offline'}
 	  			</p>
-				<FormSessaoUm />
+				</>
+
+				) : (
+				<FormSessionTwo 
+					donator={donators[0]} 
+					return={()=>setVisivel('formSessionOne')}
+				/>
+					
+				)}
 			</Layout>
 		</div>
   )
